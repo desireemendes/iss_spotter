@@ -1,4 +1,5 @@
 const request = require('./iss');
+const fetchCoordsByIP = require('./iss');
 
 const fetchMyIP = function(callback) {
   request('https://api.ipify.org?format=json', (error, response, body) => {
@@ -17,6 +18,16 @@ const fetchMyIP = function(callback) {
     callback(null, ip);
   });
 };
+
+
+fetchCoordsByIP('162.245.144.188', (error, coordinates) => {
+  if (error) {
+    console.log("It didn't work!" , error);
+    return;
+  }
+
+  console.log('It worked! Returned coordinates:' , coordinates);
+});
 
 module.exports = { fetchMyIP };
 
